@@ -1,4 +1,4 @@
-# Go-Zendesk
+# FORK of Go-Zendesk
 
 [![CircleCI](https://circleci.com/gh/MEDIGO/go-zendesk.svg?style=shield)](https://circleci.com/gh/MEDIGO/go-zendesk)
 [![GoDoc](http://godoc.org/github.com/MEDIGO/go-zendesk/zendesk?status.png)](http://godoc.org/github.com/MEDIGO/go-zendesk/zendesk)
@@ -17,7 +17,7 @@ package main
 import (
   "log"
 
-  "github.com/MEDIGO/go-zendesk/zendesk"
+  "github.com/AYaro/go-zendesk/zendesk"
 )
 
 func main() {
