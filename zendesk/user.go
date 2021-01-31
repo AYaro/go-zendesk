@@ -80,6 +80,7 @@ func (c *client) ShowManyUsers(ids []int64) ([]User, error) {
 	err := c.get(fmt.Sprintf("/api/v2/users/show_many.json?ids=%s", strings.Join(sids, ",")), out)
 	return out.Users, err
 }
+
 // ShowManyUsersByExternalIDs accepts a comma-separated list of external ids.
 //
 // Zendesk Core API docs: https://developer.zendesk.com/rest_api/docs/support/users#show-many-users
@@ -213,4 +214,15 @@ func (c *client) ShowComplianceDeletionStatuses(id int64) ([]ComplianceDeletionS
 		fmt.Sprintf("/api/v2/users/%d/compliance_deletion_statuses.json", id),
 		out)
 	return out.ComplianceDeletionStatuses, err
+}
+
+// Get Users Tickets
+//
+// Zendesk docs: https://developer.zendesk.com/rest_api/docs/support/tickets#list-tickets
+func (c *client) ListUsersTickets(id int64) ([]Ticket, error) {
+	out := new(APIPayload)
+	err := c.get(
+		fmt.Sprintf("/api/v2/users/%d/tickets/requested", id),
+		out)
+	return out.Tickets, err
 }

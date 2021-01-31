@@ -55,6 +55,7 @@ type Client interface {
 	ListTicketFields() ([]TicketField, error)
 	ListTicketIncidents(int64) ([]Ticket, error)
 	ListUsers(*ListUsersOptions) ([]User, error)
+	ListUsersTickets(id int64) ([]Ticket, error)
 	ListGroups() ([]Group, error)
 	MakeIdentityPrimary(int64, int64) ([]UserIdentity, error)
 	PermanentlyDeleteTicket(int64) (*JobStatus, error)
@@ -260,6 +261,7 @@ func marshall(in interface{}) ([]byte, error) {
 
 func unmarshall(res *http.Response, out interface{}) error {
 	if res.StatusCode < 200 || res.StatusCode >= 300 {
+		fmt.Println(res.StatusCode)
 		apierr := new(APIError)
 		apierr.Response = res
 		if err := json.NewDecoder(res.Body).Decode(apierr); err != nil {
